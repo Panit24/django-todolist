@@ -1,10 +1,11 @@
 from django.db import models
+import mongoengine as me
+class Todos(me.Document):
+    title = me.StringField()
+    description = me.StringField()
+    completed = me.BooleanField(default=False)
+    created_at = me.DateTimeField(auto_now_add=True)
+    updated_at = me.DateTimeField(auto_now=True)
 
-# Create your models here.
-class Todos(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
-    completed = models.BooleanField(default=False)
-     
     def __str__(self):
         return self.title

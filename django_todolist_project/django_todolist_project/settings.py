@@ -15,6 +15,8 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import pprint
 from pymongo import MongoClient
+import mongoengine
+
 
 load_dotenv(find_dotenv())
 
@@ -57,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -99,6 +101,7 @@ DATABASES = {
     }
 }
 
+mongoengine.connect(host='mongodb+srv://lgwamhmmams:KiU1p2UPX9Vnz1LZ@cluster0.zdsmh.mongodb.net/django-todolist?retryWrites=true&w=majority&tlsCAFile=/etc/ssl/cert.pem')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
