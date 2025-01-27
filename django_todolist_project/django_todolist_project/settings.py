@@ -16,6 +16,8 @@ import os
 import pprint
 from pymongo import MongoClient
 import mongoengine
+from mongoengine import connect
+
 
 
 load_dotenv(find_dotenv())
@@ -89,17 +91,30 @@ WSGI_APPLICATION = 'django_todolist_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'django-todolist',  # Your MongoDB database name
+#         'CLIENT': {
+#             'host': 'mongodb+srv://lgwamhmmams:KiU1p2UPX9Vnz1LZ@cluster0.zdsmh.mongodb.net/django-todolist?retryWrites=true&w=majority&tlsCAFile=/etc/ssl/cert.pem',  # Replace with your MongoDB Atlas URI
+#             'username': "lgwamhmmams",
+#             'password': "KiU1p2UPX9Vnz1LZ",
+#         }
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'django-todolist',  # Your MongoDB database name
-        'CLIENT': {
-            'host': 'mongodb+srv://lgwamhmmams:KiU1p2UPX9Vnz1LZ@cluster0.zdsmh.mongodb.net/django-todolist?retryWrites=true&w=majority&tlsCAFile=/etc/ssl/cert.pem',  # Replace with your MongoDB Atlas URI
-            'username': "lgwamhmmams",
-            'password': "KiU1p2UPX9Vnz1LZ",
-        }
+        'ENGINE': '',
     }
 }
+
+connect(
+    db='django-todolist',
+    host='mongodb+srv://lgwamhmmams:KiU1p2UPX9Vnz1LZ@cluster0.zdsmh.mongodb.net/django-todolist?retryWrites=true&w=majority&tlsCAFile=/etc/ssl/cert.pem',
+    username='lgwamhmmams',
+    password='KiU1p2UPX9Vnz1LZ'
+)
 
 mongoengine.connect(host='mongodb+srv://lgwamhmmams:KiU1p2UPX9Vnz1LZ@cluster0.zdsmh.mongodb.net/django-todolist?retryWrites=true&w=majority&tlsCAFile=/etc/ssl/cert.pem')
 
@@ -144,8 +159,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", 
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000", 
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 

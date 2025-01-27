@@ -9,3 +9,13 @@ class Todos(me.Document):
 
     def __str__(self):
         return self.title
+      
+    def to_json(self):
+        return {
+            "_id": str(self.id),  # Convert ObjectId to string
+            "title": self.title,
+            "description": self.description,
+            "completed": self.completed,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "updated_at": self.updated_at.isoformat() if self.updated_at else None,
+        }
